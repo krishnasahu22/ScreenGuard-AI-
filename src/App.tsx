@@ -21,6 +21,8 @@ import {
   Binary
 } from 'lucide-react';
 
+const EMPTY_ANNOTATIONS: RoiAnnotation[] = [];
+
 export default function App() {
   const [cases, setCases] = useState<EvidenceCase[]>(INITIAL_CASES);
   const [activeCaseId, setActiveCaseId] = useState<string>(INITIAL_CASES[0].id);
@@ -44,7 +46,7 @@ export default function App() {
   }, []);
 
   const activeCase = cases.find((c) => c.id === activeCaseId) || cases[0];
-  const activeAnnotations = annotationsByCase[activeCase.id] || [];
+  const activeAnnotations = annotationsByCase[activeCase.id] || EMPTY_ANNOTATIONS;
 
   const handleAddAnnotation = (annotation: RoiAnnotation) => {
     setAnnotationsByCase((prev) => ({

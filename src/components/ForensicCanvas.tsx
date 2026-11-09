@@ -244,6 +244,11 @@ export const ForensicCanvas: React.FC<ForensicCanvasProps> = ({
     annotations
   ]);
 
+  const drawCompositeDisplayRef = useRef(drawCompositeDisplay);
+  useEffect(() => {
+    drawCompositeDisplayRef.current = drawCompositeDisplay;
+  }, [drawCompositeDisplay]);
+
   // Execute active forensic filter
   const runForensicAnalysis = useCallback(async () => {
     const origCanvas = originalCanvasRef.current;
@@ -285,7 +290,7 @@ export const ForensicCanvas: React.FC<ForensicCanvasProps> = ({
       console.error('Forensic processing error:', err);
     } finally {
       setIsProcessing(false);
-      drawCompositeDisplay();
+      drawCompositeDisplayRef.current();
     }
   }, [
     settings.filterMode,
@@ -294,8 +299,7 @@ export const ForensicCanvas: React.FC<ForensicCanvasProps> = ({
     settings.noiseSensitivity,
     settings.cloneThreshold,
     settings.selectedChannel,
-    currentCase.tamperZones,
-    drawCompositeDisplay
+    currentCase.id
   ]);
 
   // Initial and case-change load
