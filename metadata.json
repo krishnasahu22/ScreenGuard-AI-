@@ -1,0 +1,6 @@
+{
+  "name": "Forensic Investigation Interface",
+  "description": "High-precision digital image forensics workstation with Error Level Analysis (ELA), noise extraction, clone detection, cryptographic verification, and courtroom-admissible chain of custody reporting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
